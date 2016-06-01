@@ -37,6 +37,8 @@ static BOOL g_MessagePump = FALSE;
 
 #include <freerdp/server/shadow.h>
 
+#include <utils/Log.h>
+
 #ifdef WITH_SHADOW_X11
 extern int X11_ShadowSubsystemEntry(RDP_SHADOW_ENTRY_POINTS* pEntryPoints);
 #endif
@@ -47,6 +49,10 @@ extern int Mac_ShadowSubsystemEntry(RDP_SHADOW_ENTRY_POINTS* pEntryPoints);
 
 #ifdef WITH_SHADOW_WIN
 extern int Win_ShadowSubsystemEntry(RDP_SHADOW_ENTRY_POINTS* pEntryPoints);
+#endif
+
+#ifdef WITH_SHADOW_ANDROID
+extern int Android_ShadowSubsystemEntry(RDP_SHADOW_ENTRY_POINTS* pEntryPoints);
 #endif
 
 int main(int argc, char** argv)
@@ -66,6 +72,10 @@ int main(int argc, char** argv)
 
 #ifdef WITH_SHADOW_WIN
 	shadow_subsystem_set_entry(Win_ShadowSubsystemEntry);
+#endif
+
+#ifdef WITH_SHADOW_ANDROID
+	shadow_subsystem_set_entry(Android_ShadowSubsystemEntry);
 #endif
 
 	server = shadow_server_new();

@@ -47,7 +47,9 @@
 #include <mach/task.h>
 #define winpr_sem_t semaphore_t
 #else
+#define pthread_mutex_timedlock pthread_mutex_timedlock_broken
 #include <pthread.h>
+#undef pthread_mutex_timedlock
 #include <semaphore.h>
 #define winpr_sem_t sem_t
 #endif

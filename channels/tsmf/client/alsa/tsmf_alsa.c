@@ -28,7 +28,7 @@
 
 #include <winpr/crt.h>
 
-#include <alsa/asoundlib.h>
+#include <tinyalsa/asoundlib.h>
 
 #include <freerdp/types.h>
 #include <freerdp/codec/dsp.h>

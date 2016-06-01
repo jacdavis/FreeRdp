@@ -550,6 +550,7 @@ static BOOL shadow_server_init_certificate(rdpShadowServer* server)
 	if ((!PathFileExistsA(server->CertificateFile)) ||
 			(!PathFileExistsA(server->PrivateKeyFile)))
 	{
+#ifndef ANDROID
 		makecert = makecert_context_new();
 		if (!makecert)
 			goto out_fail;
@@ -571,10 +572,15 @@ static BOOL shadow_server_init_certificate(rdpShadowServer* server)
 			if (makecert_context_output_private_key_file(makecert, filepath) != 1)
 				goto out_fail;
 		}
+#else 
+		goto out_fail;
+#endif
 	}
+
 	ret = TRUE;
 out_fail:
-	makecert_context_free(makecert);
+// TODO:
+	//makecert_context_free(makecert);
 	free(filepath);
 
 	return ret;

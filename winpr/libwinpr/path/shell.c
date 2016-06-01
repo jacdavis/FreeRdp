@@ -181,13 +181,21 @@ static char* GetPath_XDG_CONFIG_HOME(void)
 	if (!home)
 		return NULL;
 
+#ifdef ANDROID
+	path = (char*) malloc(strlen(home) + strlen("/data/.config") + 1);
+#else
 	path = (char*) malloc(strlen(home) + strlen("/.config") + 1);
+#endif
 	if (!path)
 	{
 		free(home);
 		return NULL;
 	}
+#ifdef ANDROID
+	sprintf(path, "%s%s", home, "/data/.config");
+#else
 	sprintf(path, "%s%s", home, "/.config");
+#endif
 
 	free(home);
 #endif

@@ -103,7 +103,9 @@ static long long ts_difftime(const struct timespec *o,
 /* Drop in replacement for pthread_mutex_timedlock
  */
 #if !defined(HAVE_PTHREAD_MUTEX_TIMEDLOCK)
+#define pthread_mutex_timedlock pthread_mutex_timedlock_broken
 #include <pthread.h>
+#undef pthread_mutex_timedlock
 
 static int pthread_mutex_timedlock(pthread_mutex_t *mutex, const struct timespec *timeout)
 {

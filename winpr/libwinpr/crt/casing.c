@@ -10,6 +10,8 @@
  * project on the script's generated output.
  */
 
+#include "winpr/wtypes.h"
+
 #define WINPR_TOLOWERW(_wch) \
 	(_wch + winpr_casemap_lower[winpr_casemap_lower[_wch >> 8] + (_wch & 0xFF)]);
 

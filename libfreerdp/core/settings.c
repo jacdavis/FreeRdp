@@ -30,6 +30,7 @@
 
 #include <ctype.h>
 
+#include <winpr/wtypes.h>
 #include <winpr/crt.h>
 #include <winpr/file.h>
 #include <winpr/path.h>

@@ -32,7 +32,7 @@
 #include <winpr/thread.h>
 #include <winpr/cmdline.h>
 
-#include <alsa/asoundlib.h>
+#include <tinyalsa/asoundlib.h>
 
 #include <freerdp/addin.h>
 #include <freerdp/codec/dsp.h>

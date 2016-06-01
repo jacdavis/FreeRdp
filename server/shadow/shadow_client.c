@@ -223,7 +223,9 @@ BOOL shadow_client_post_connect(freerdp_peer* peer)
 	WLog_ERR(TAG, "Client from %s is activated (%dx%d@%d)",
 			peer->hostname, settings->DesktopWidth, settings->DesktopHeight, settings->ColorDepth);
 
-	peer->update->DesktopResize(peer->update->context);
+	// HACK: don't send resize it is currently causing a segfault.
+	// TODO: fix this
+	// peer->update->DesktopResize(peer->update->context);
 
 	shadow_client_channels_post_connect(client);
 

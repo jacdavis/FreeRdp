@@ -28,7 +28,10 @@
 
 BOOL shadow_client_init_lobby(rdpShadowServer* server)
 {
-	int width;
+    // TODO: I believe the "lobby" is the login screen displayed 
+    // when the user connects and is asked for a password
+    // we'll need a replacement or some other model for android
+    /*int width;
 	int height;
 	rdtkEngine* engine;
 	rdtkSurface* surface;
@@ -55,7 +58,7 @@ BOOL shadow_client_init_lobby(rdpShadowServer* server)
 	invalidRect.bottom = lobby->height;
 	if (server->shareSubRect)
 	{
-		/* If we have shared sub rect setting, only fill shared rect */
+  	        // If we have shared sub rect setting, only fill shared rect 
 		rectangles_intersection(&invalidRect, &(server->subRect), &invalidRect);
 	}
 
@@ -71,7 +74,7 @@ BOOL shadow_client_init_lobby(rdpShadowServer* server)
 
 	rdtk_engine_free(engine);
 
-	region16_union_rect(&(lobby->invalidRegion), &(lobby->invalidRegion), &invalidRect);
+	region16_union_rect(&(lobby->invalidRegion), &(lobby->invalidRegion), &invalidRect);*/
 
 	return TRUE;
 }

@@ -216,7 +216,8 @@ static BOOL freerdp_peer_initialize(freerdp_peer* client)
 	settings->LocalConnection = client->local;
 	rdp->state = CONNECTION_STATE_INITIAL;
 
-	if (settings->RdpKeyFile)
+	// TODO: turn this back on
+	/*if (settings->RdpKeyFile)
 	{
 		settings->RdpServerRsaKey = key_new(settings->RdpKeyFile);
 
@@ -225,7 +226,7 @@ static BOOL freerdp_peer_initialize(freerdp_peer* client)
 			WLog_ERR(TAG, "invalid RDP key file %s", settings->RdpKeyFile);
 			return FALSE;
 		}
-	}
+		}*/
 
 	return TRUE;
 }

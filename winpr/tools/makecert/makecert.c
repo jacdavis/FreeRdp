@@ -31,6 +31,8 @@
 #include <openssl/pkcs12.h>
 #include <openssl/x509v3.h>
 
+#include <openssl/rsa.h>
+
 #include <winpr/tools/makecert.h>
 
 struct _MAKECERT_CONTEXT
@@ -911,7 +913,11 @@ int makecert_context_process(MAKECERT_CONTEXT* context, int argc, char** argv)
 		key_length = atoi(arg->Value);
 	}
 
-	context->rsa = RSA_generate_key(key_length, RSA_F4, NULL, NULL);
+	context->rsa = RSA_new();
+	BN_GENCB cb;
+	BIGNUM* bn = BN_new();
+	RSA_generate_key_ex(context->rsa, key_length, bn, &cb);
+	BN_free(bn);
 
 	if (!EVP_PKEY_assign_RSA(context->pkey, context->rsa))
 		return -1;

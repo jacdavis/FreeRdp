@@ -1470,6 +1470,14 @@ rdpRdp* rdp_new(rdpContext* context)
 		return NULL;
 
 	rdp->context = context;
+
+	if (context->instance == NULL)
+	{
+	    WLog_ERR(TAG, "creating new context instance");
+	    context->instance = freerdp_new();
+	    WLog_ERR(TAG, "new context instance created %d", context->instance);
+	}
+	    
 	rdp->instance = context->instance;
 
 	flags = 0;

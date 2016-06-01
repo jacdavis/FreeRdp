@@ -216,7 +216,11 @@ int schannel_openssl_server_init(SCHANNEL_OPENSSL* context)
 	options |= SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS;
 	SSL_CTX_set_options(context->ctx, options);
 
+#ifndef ANDROID
 	if (SSL_CTX_use_RSAPrivateKey_file(context->ctx, "/tmp/localhost.key", SSL_FILETYPE_PEM) <= 0)
+#else
+	if (SSL_CTX_use_RSAPrivateKey_file(context->ctx, "/data/localhost.key", SSL_FILETYPE_PEM) <= 0)
+#endif
 	{
 		WLog_ERR(TAG, "SSL_CTX_use_RSAPrivateKey_file failed");
 		goto out_rsa_key;
@@ -230,7 +234,11 @@ int schannel_openssl_server_init(SCHANNEL_OPENSSL* context)
 		goto out_ssl_new;
 	}
 
+#ifndef ANDROID
 	if (SSL_use_certificate_file(context->ssl, "/tmp/localhost.crt", SSL_FILETYPE_PEM) <= 0)
+#else
+	if (SSL_use_certificate_file(context->ssl, "/data/localhost.crt", SSL_FILETYPE_PEM) <= 0)
+#endif
 	{
 		WLog_ERR(TAG, "SSL_use_certificate_file failed");
 		goto out_use_certificate;
